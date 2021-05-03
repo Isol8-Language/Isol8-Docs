@@ -9,7 +9,11 @@ sunOut as bool true;
 myCounter as int 1;
 
 bluePrompt as string "The sky is blue.";
+cloudyPrompt as string "The sky is cloudy.";
+
 sunPrompt as string "The sun is out.";
+noSunPrompt as string "The sun is not out.";
+
 lookedPrompt as string "I have looked at the sky this many times:";
 
 Initial() ret int
@@ -26,7 +30,27 @@ Initial() ret int
 			{
 				out(sunPrompt\n);
 			}
-		}	
+			if sunOut == false
+			{
+				out(noSunPrompt\n);
+			}
+		}
+
+		if blueSky == false
+		{
+			out(cloudyPrompt\n);
+			out(noSunPrompt\n); 
+		}
+	
+		if myCounter == 3
+		{
+			sunOut = false;
+		}
+
+		if myCounter == 7
+		{
+			blueSky = false;
+		}
 
 		out(lookedPrompt);
 		out(myCounter\n);
