@@ -1,0 +1,22 @@
+depend "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\ucrt\x64\ucrt.lib"
+depend "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29333\lib\x64\msvcrt.lib"
+depend "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29333\lib\x64\legacy_stdio_definitions.lib"
+depend "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29333\lib\x64\legacy_stdio_wide_specifiers.lib"
+heightPrompt as string "Enter triangle height: ";
+basePrompt as string "Enter triangle base: ";
+resultPrompt as string "The result is: ";
+base as int 0;
+height as int 0;
+result as int 0;
+half as int 2;
+Initial() ret int
+{
+	out(heightPrompt);
+	in(height);
+	out(basePrompt);
+	in(base);
+	result = height * base;
+	result / half;
+	out(resultPrompt);
+	out(result\n);
+}
