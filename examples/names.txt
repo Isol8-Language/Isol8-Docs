@@ -17,6 +17,6 @@ Initial() ret int
 	out(namePrompt);
 	out(fname);
 	out(emptyPrompt);
-	out(sname);
+	out(sname\n);
 	ret 0;
 }
