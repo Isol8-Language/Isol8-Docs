@@ -1,8 +1,8 @@
 <!-- omit in toc -->
 # ISOL8 Language Documentation
 
-- [Documentation To-Do](#documentation-to-do)
 - [ISOL8 Dependencies](#isol8-dependencies)
+- [Examples](#examples)
 - [Language Syntax](#language-syntax)
 	- [Variable Declaration](#variable-declaration)
 	- [Function Declaration](#function-declaration)
@@ -17,13 +17,13 @@
 	- [For Loops](#for-loops)
 	- [Comments](#comments)
 
-## Documentation To-Do
-- [ ] ...
+## ISOL8 Dependencies
+ISOL8 Compiler requires .NET 5 to be installed on the machine, it can be downloaded from [here](https://dotnet.microsoft.com/download/dotnet/5.0/runtime/).
 <br>
 <br>
 
-## ISOL8 Dependencies
-Currently recommended to have **Microsoft Visual Studio 2019 Enterprise** installed for maximum compatability.
+## Examples
+Examples showing ISOL8 syntax can be found [here](https://github.com/Isol8-Language/Isol8-Docs/tree/master/examples); these illustrate what the language is capable of but is it not an extensive list. Feel free to download and compile them to see for yourself.
 <br>
 <br>
 
@@ -34,32 +34,32 @@ Currently recommended to have **Microsoft Visual Studio 2019 Enterprise** instal
 <VariableName> as <VariableType> <VariableValue>;
 ```
 
-| Variable Type |ISOL8 Syntax | Signed? | Min. Value | Max. Value |
-|---|---|---|:---:|:---:|
-|8-bit integer|``byte``|?|0|255|
-|16-bit integer|``short``|yes|-2<sup>15</sup>|2<sup>15</sup> - 1|
-|32-bit integer|``int``|yes|-2<sup>31</sup>|2<sup>31</sup>-1|
-|64-bit integer|``long``|yes|-2<sup>63</sup>|2<sup>63</sup>-1|
-|Pointers|``ptr``|-|-|-|
-|Strings|``string``|-|-|-|
-|Booleans|``bool``|-|0|1|
+| Variable Type |ISOL8 Syntax | Min. Value | Max. Value |
+|---|---|:---:|:---:|
+|8-bit integer|``byte``|-255|255|
+|16-bit integer|``short``|-65,535|65,535|
+|32-bit integer|``int``|-2<sup>31</sup>|2<sup>31</sup>-1|
+|64-bit integer|``long``|-2<sup>63</sup>|2<sup>63</sup>-1|
+|Pointers|``ptr``|-|-|
+|Strings|``string``|-|-|
+|Booleans|``bool``|0|1|
 <br>
 
 Booleans can be defined in multiple ways:
 ```
-// true/false are not case sensitive
+## true/false are not case sensitive
 bool_x as bool TRUE;
 bool_y as bool false;
 
-// numeric values instead of true/false
+## numeric values instead of true/false
 bool_a as bool 1;
 bool_b as bool 0;
 
-// range of values - these get converted into 1 or 0
-bool_i as bool 4534;		// true
-bool_j as bool -66;		// false
+## range of values - values > 1 are true, values < 1 are false
+bool_i as bool 4534;		## true
+bool_j as bool -66;			## false
 ```
-Variables can be assigned a value after declaration, the syntax and use case follow:
+Variables can be reassigned a value after declaration, the syntax and use case follow:
 ```
 <Variable> = <Value/Variable>;
 ```
@@ -78,12 +78,12 @@ ___
     ret <ReturnVariable>;
 }
 ```
-The program must contain one method/function which is called ``Initial()``, this is the entry point.
+The program must contain one method/function which is called ``Initial()``, this is the entry point. Failure to include this entry point will result in a fatal compiler error.
 ___
 ### External Libraries
-Generic syntax for importing external libraries:
+Syntax for importing external libraries:
 ```
-depend "<path to library>"
+depend "<relative/absolute path to library>"
 ```
 These should be placed at the very beginning of the file.
 ___
@@ -98,16 +98,17 @@ ___
 |Division|``/``|
 <br>
 
-Generic syntax for using maths in ISOL8 (except for the addition assignment operator) is as follows:
+Syntax of using mathematical operations in ISOL8 (expect for the addition assignment operator):
 ```
 <Variable One> = <Variable Two> <operator> <Variable Three>;
 ```
-This is also legal:
+This is also acceptable:
 ```
 <Variable One> <operator> <Variable Two>;
 ```
 This will store the result of the calculation in ``<Variable One>``.
-<br> <br>
+<br>
+<br>
 
 <!-- omit in toc -->
 #### Addition Assignment:
@@ -131,46 +132,65 @@ ____
 |Is equal to|``==``|
 |Is not equal to|``!=``|
 
-Generic syntax for using comparative operators in ISOL8:
+Syntax for using comparative operators in ISOL8:
 ```
 <BooleanVariable> = <Variable One> <operator> <Variable Two>;
 ```
 ____
 
 ### Arrays
+Currently only array declaration is possible.
+
+Syntax:
 ```
 <Variable> as <ArrayType>[<ArrayLength>];
 ```
+Example:
 ```
 b as int[10];
 ```
 ___
 ### Pointers
+Syntax:
 ```
 <PointerName> = (ptr)<VariableName>;
 ```
+
+Example:
+```
+intOne as int 3;
+pointerOne as ptr null;
+
+pointerOne = (ptr)intOne;
+out(pointerOne); 	## prints '1'
+```
+
+Pointers can also point to other pointers, and therefore be nested.
+
 ___
 ### Input / Output
-Input:
+Stores the value of the input into the provided variable; syntax:
 ```
 in(<variableName>);
 ```
-Output:<br>
+
+Prints out the value of the variable; syntax:
 ```
 out(<VariableName>);
 ```
 
-To use ``out()``, the required ``printf`` libraries must first be declared (see [external libraries](#external-libraries) for more):
+To use ``in()`` or ``out()``, the required libraries must first be declared (see [external libraries](#external-libraries) for more):
 
 ```
-depend "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\ucrt\x64\ucrt.lib"
-depend "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29333\lib\x64\msvcrt.lib"
-depend "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29333\lib\x64\legacy_stdio_definitions.lib"
-depend "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29333\lib\x64\legacy_stdio_wide_specifiers.lib"
+depend "ucrt.lib"
+depend "msvcrt.lib"
+depend "legacy_stdio_definitions.lib"
+depend "legacy_stdio_wide_specifiers.lib"
 ```
+These libraries are provided in the release version of the compiler, and the ``template.txt`` provided has them already inserted.
 
 Currently the ``out()`` function will treat integers as signed.<br> 
-It is also possible to add a new line ``\n`` when using ``out()``, i.e. ``out(<variable>\n)`` .
+New lines can be declared using ``\n`` when using ``out()``, i.e. ``out(<variable>\n``) .
 ___
 ### Deleting Variables
 ```
@@ -196,14 +216,15 @@ for (<count>)
 It is possible to break out of the for loop by using the ``break`` keyword.
 ___
 ### Comments
-Comment characters: ``##``
-
 Syntax:
 ```
-##a as int 43;
+## this is a comment, it will be ignored by the compiler.
+```
+
+Example:
+```
+## a as int 43;
 out(a/n);
 ```
 This will result in a compiler error as ``a`` will not have been declared.
-
-These (``##``) must be the first two characters of the line.
 ___
