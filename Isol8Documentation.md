@@ -2,6 +2,7 @@
 # ISOL8 Language Documentation
 
 - [ISOL8 Dependencies](#isol8-dependencies)
+- [Running the ISOL8 Compiler](#running-the-isol8-compiler)
 - [Examples](#examples)
 - [Language Syntax](#language-syntax)
 	- [Variable Declaration](#variable-declaration)
@@ -21,6 +22,15 @@
 ISOL8 Compiler requires .NET 5 to be installed on the machine, it can be downloaded from [here](https://dotnet.microsoft.com/download/dotnet/5.0/runtime/).
 <br>
 <br>
+
+## Running the ISOL8 Compiler
+Run ``Isol8-Compiler.exe`` via the command line. It takes two arguments - first argument is the full name of the source text file, and the second argument is the name of the executable to create.
+
+Example:
+```
+./Isol8-Compiler.exe my-program-source.txt my-program
+```
+This will run the compiler which will look at ``my-program-source.txt``, where it is expecting ISOL8 syntax, and will generate ``my-program.exe`` in the Output folder if there are no compiler errors.
 
 ## Examples
 Examples showing ISOL8 syntax can be found [here](https://github.com/Isol8-Language/Isol8-Docs/tree/master/examples); these illustrate what the language is capable of but is it not an extensive list. Feel free to download and compile them to see for yourself.
