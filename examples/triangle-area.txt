@@ -1,7 +1,7 @@
-depend "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\ucrt\x64\ucrt.lib"
-depend "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29333\lib\x64\msvcrt.lib"
-depend "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29333\lib\x64\legacy_stdio_definitions.lib"
-depend "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29333\lib\x64\legacy_stdio_wide_specifiers.lib"
+depend "ucrt.lib"
+depend "msvcrt.lib"
+depend "legacy_stdio_definitions.lib"
+depend "legacy_stdio_wide_specifiers.lib"
 heightPrompt as string "Enter triangle height: ";
 basePrompt as string "Enter triangle base: ";
 resultPrompt as string "The result is: ";
