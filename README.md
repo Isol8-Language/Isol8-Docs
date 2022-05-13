@@ -15,6 +15,3 @@ Language test cases along with the code used can be found [here](Isol8Testing.md
 
 <br>
 <br>
-
-## The Group
-Made by TSE Group 36
